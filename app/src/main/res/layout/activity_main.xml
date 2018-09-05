@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Bottom Sheet"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/filters_sheet_background"
+        android:orientation="vertical"
+        app:layout_behavior="com.kienht.bottomsheetbehavior.BottomSheetBehavior"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="48dp">
+
+        <RelativeLayout
+            android:id="@+id/clickable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/marker_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/map_marker_lounge" />
+
+            <TextView
+                android:id="@+id/marker_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_toLeftOf="@+id/expand_icon"
+                android:layout_toRightOf="@+id/marker_icon"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:text="OICSoft.com" />
+
+            <ImageView
+                android:id="@+id/expand_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_expand_more"
+                android:tint="@color/collapsing_section"
+                android:tintMode="src_in" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/sheet_header_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha="0"
+            android:background="@drawable/filters_sheet_header_shadow"
+            android:stateListAnimator="@animator/active_alpha" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/description_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="1px"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/marker_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp" />
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
