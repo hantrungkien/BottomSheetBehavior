@@ -1,10 +1,9 @@
 package com.kienht.demobottomsheetbehavior
 
 import android.os.Bundle
-import android.util.Log
+import android.support.v4.widget.NestedScrollView
+import android.support.v7.app.AppCompatActivity
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.NestedScrollView
 import com.kienht.bottomsheetbehavior.BottomSheetBehavior
 import kotlinx.android.synthetic.main.activity_main.*
 

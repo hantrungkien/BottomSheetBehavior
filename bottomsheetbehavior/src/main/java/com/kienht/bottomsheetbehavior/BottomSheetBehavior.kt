@@ -21,19 +21,18 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
+import android.support.annotation.IntDef
+import android.support.annotation.VisibleForTesting
+import android.support.design.widget.CoordinatorLayout
+import android.support.v4.view.AbsSavedState
+import android.support.v4.view.ViewCompat
+import android.support.v4.widget.ViewDragHelper
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.VelocityTracker
 import android.view.View
 import android.view.ViewConfiguration
 import android.view.ViewGroup
-import androidx.annotation.IntDef
-import androidx.annotation.VisibleForTesting
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-import androidx.core.view.ViewCompat
-import androidx.customview.view.AbsSavedState
-import androidx.customview.widget.ViewDragHelper
 import java.lang.ref.WeakReference
 import kotlin.math.absoluteValue
 
@@ -41,7 +40,7 @@ import kotlin.math.absoluteValue
  * Copy of material lib's BottomSheetBehavior that includes some bug fixes.
  */
 // TODO remove when a fixed version in material lib is released.
-public class BottomSheetBehavior<V : View> : Behavior<V> {
+public class BottomSheetBehavior<V : View> : CoordinatorLayout.Behavior<V> {
 
     companion object {
         /** The bottom sheet is dragging. */

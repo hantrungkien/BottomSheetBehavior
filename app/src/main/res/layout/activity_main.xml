@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +9,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:padding="10dp"
         android:text="Bottom Sheet"
@@ -78,7 +78,7 @@
             android:background="@drawable/filters_sheet_header_shadow"
             android:stateListAnimator="@animator/active_alpha" />
 
-        <androidx.core.widget.NestedScrollView
+        <android.support.v4.widget.NestedScrollView
             android:id="@+id/description_scrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,8 +90,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp" />
-        </androidx.core.widget.NestedScrollView>
+        </android.support.v4.widget.NestedScrollView>
 
     </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</android.support.design.widget.CoordinatorLayout>
