@@ -21,7 +21,7 @@ allprojects {
 ````
 module/build.gradle
 ````gradle
-implementation 'com.github.hantrungkien:BottomSheetBehavior:v1.0.0'
+implementation 'com.github.hantrungkien:BottomSheetBehavior:v1.0.2'
 ````
 
 #### How to use please review in the demo app
