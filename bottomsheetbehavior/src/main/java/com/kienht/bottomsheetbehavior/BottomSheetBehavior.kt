@@ -21,18 +21,18 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
-import android.support.annotation.IntDef
-import android.support.annotation.VisibleForTesting
-import android.support.design.widget.CoordinatorLayout
-import android.support.v4.view.AbsSavedState
-import android.support.v4.view.ViewCompat
-import android.support.v4.widget.ViewDragHelper
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.VelocityTracker
 import android.view.View
 import android.view.ViewConfiguration
 import android.view.ViewGroup
+import androidx.annotation.IntDef
+import androidx.annotation.VisibleForTesting
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.ViewCompat
+import androidx.customview.view.AbsSavedState
+import androidx.customview.widget.ViewDragHelper
 import java.lang.ref.WeakReference
 import kotlin.math.absoluteValue
 
@@ -40,7 +40,7 @@ import kotlin.math.absoluteValue
  * Copy of material lib's BottomSheetBehavior that includes some bug fixes.
  */
 // TODO remove when a fixed version in material lib is released.
-public class BottomSheetBehavior<V : View> : CoordinatorLayout.Behavior<V> {
+class BottomSheetBehavior<V : View> : CoordinatorLayout.Behavior<V> {
 
     companion object {
         /** The bottom sheet is dragging. */
@@ -252,7 +252,7 @@ public class BottomSheetBehavior<V : View> : CoordinatorLayout.Behavior<V> {
             value.data
         } else {
             a.getDimensionPixelSize(
-                    R.styleable.BottomSheetBehavior_Layout_behavior_peekHeight, PEEK_HEIGHT_AUTO
+                R.styleable.BottomSheetBehavior_Layout_behavior_peekHeight, PEEK_HEIGHT_AUTO
             )
         }
         isHideable = a.getBoolean(R.styleable.BottomSheetBehavior_Layout_behavior_hideable, false)
@@ -268,13 +268,13 @@ public class BottomSheetBehavior<V : View> : CoordinatorLayout.Behavior<V> {
 
     override fun onSaveInstanceState(parent: CoordinatorLayout, child: V): Parcelable {
         return SavedState(
-                super.onSaveInstanceState(parent, child) ?: Bundle.EMPTY,
-                state,
-                peekHeight,
-                isFitToContents,
-                isHideable,
-                skipCollapsed,
-                isDraggable
+            super.onSaveInstanceState(parent, child) ?: Bundle.EMPTY,
+            state,
+            peekHeight,
+            isFitToContents,
+            isHideable,
+            skipCollapsed,
+            isDraggable
         )
     }
 
@@ -336,7 +336,7 @@ public class BottomSheetBehavior<V : View> : CoordinatorLayout.Behavior<V> {
                 // init peekHeightMin
                 @SuppressLint("PrivateResource")
                 peekHeightMin = parent.resources.getDimensionPixelSize(
-                        R.dimen.design_bottom_sheet_peek_height_min
+                    R.dimen.design_bottom_sheet_peek_height_min
                 )
             }
             lastPeekHeight = Math.max(peekHeightMin, parentHeight - parent.width * 9 / 16)
@@ -389,6 +389,7 @@ public class BottomSheetBehavior<V : View> : CoordinatorLayout.Behavior<V> {
         }
 
         val action = event.actionMasked
+
         lastTouchX = event.x.toInt()
         lastTouchY = event.y.toInt()
 
@@ -424,9 +425,9 @@ public class BottomSheetBehavior<V : View> : CoordinatorLayout.Behavior<V> {
         }
 
         return acceptTouches &&
-            // CoordinatorLayout can call us before the view is laid out. >_<
-            ::dragHelper.isInitialized &&
-            dragHelper.shouldInterceptTouchEvent(event)
+                // CoordinatorLayout can call us before the view is laid out. >_<
+                ::dragHelper.isInitialized &&
+                dragHelper.shouldInterceptTouchEvent(event)
     }
 
     override fun onTouchEvent(
@@ -573,10 +574,10 @@ public class BottomSheetBehavior<V : View> : CoordinatorLayout.Behavior<V> {
         velocityY: Float
     ): Boolean {
         return isDraggable &&
-            target == nestedScrollingChildRef?.get() &&
-            (state != STATE_EXPANDED || super.onNestedPreFling(
-                coordinatorLayout, child, target, velocityX, velocityY
-            ))
+                target == nestedScrollingChildRef?.get() &&
+                (state != STATE_EXPANDED || super.onNestedPreFling(
+                    coordinatorLayout, child, target, velocityX, velocityY
+                ))
     }
 
     private fun clearNestedScroll() {
@@ -693,7 +694,7 @@ public class BottomSheetBehavior<V : View> : CoordinatorLayout.Behavior<V> {
                 }
             }
             state == STATE_HIDDEN && isHideable -> top = parentHeight
-            else -> throw IllegalArgumentException("Invalid state: " + state)
+            else -> throw IllegalArgumentException("Invalid state: $state")
         }
 
         if (isAnimationDisabled) {
@@ -739,11 +740,11 @@ public class BottomSheetBehavior<V : View> : CoordinatorLayout.Behavior<V> {
 
         override fun tryCaptureView(child: View, pointerId: Int): Boolean {
             when {
-            // Sanity check
+                // Sanity check
                 state == STATE_DRAGGING -> return false
-            // recapture a settling sheet
+                // recapture a settling sheet
                 dragHelper.viewDragState == ViewDragHelper.STATE_SETTLING -> return true
-            // let nested scroll handle this
+                // let nested scroll handle this
                 nestedScrollingChildRef?.get() != null -> return false
             }
 
@@ -840,13 +841,13 @@ public class BottomSheetBehavior<V : View> : CoordinatorLayout.Behavior<V> {
         }
 
         constructor(
-                superState: Parcelable,
-                @State state: Int,
-                peekHeight: Int,
-                isFitToContents: Boolean,
-                isHideable: Boolean,
-                skipCollapsed: Boolean,
-                isDraggable: Boolean
+            superState: Parcelable,
+            @State state: Int,
+            peekHeight: Int,
+            isFitToContents: Boolean,
+            isHideable: Boolean,
+            skipCollapsed: Boolean,
+            isDraggable: Boolean
         ) : super(superState) {
             this.state = state
             this.peekHeight = peekHeight
